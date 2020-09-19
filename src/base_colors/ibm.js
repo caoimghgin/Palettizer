@@ -1,0 +1,8 @@
+export var primary = "#0f62fe"
+export var secondary = "#8a3ffc"
+export var tertiary = "#8a3ffc"
+export var success = "#24a148"
+export var warning = "#f1c21b"
+export var danger = "#da1e28"
+export var neutralCool = "#6f6f6f"
+export var neutral = "#6f6f6f"

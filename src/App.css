@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+#weight400 {
+  text-decoration: underline;
+}
+
+.swatch {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width:100px;
+  height:100px;
+  background: white;
+}

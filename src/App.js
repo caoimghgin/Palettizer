@@ -1,26 +1,40 @@
 import React from 'react';
 import './App.css';
-import {primary, secondary, tertiary, success, warning, danger, neutralCool, neutral} from './base_colors/meda2'
-import Swatcher from './swatcher'
+import Tonal from './tonal'
+import { shadowTarget, highlightTarget, swatchLabelType } from './constants'
+// import {primary, secondary, tertiary, success, warning, danger, neutralCool, neutral} from './base_colors/bootstrap'
 
-const swatchLabel = "lightness"
+//
+// Enter your colors below, or comment out and experiment with the import above.
+// The values below from my design system Meda, only as a starting point
+//
 
-let swatcher = new Swatcher(97, 0.25)
+ var primary = "#0073E6"
+ var secondary = "#7C66CC"
+ var tertiary = "#FF6900"
+ var success = "#198A61"
+ var warning = "#ffa500"
+ var danger = "#DA3E41"
+ var neutralCool = "#717684"
+ var neutral = "#787878"
+
+let tonal = new Tonal(highlightTarget.light, shadowTarget.medium)
+const swatchLabel = swatchLabelType.lValue
 
 const renderSwatchRow = (swatches, key) => {
 
-  let swatch900 = document.getElementById(key + "-" + swatcher.weights[0])
-  let swatch800 = document.getElementById(key + "-" + swatcher.weights[1])
-  let swatch700 = document.getElementById(key + "-" + swatcher.weights[2])
-  let swatch600 = document.getElementById(key + "-" + swatcher.weights[3])
-  let swatch500 = document.getElementById(key + "-" + swatcher.weights[4])
-  let swatch400 = document.getElementById(key + "-" + swatcher.weights[5])
-  let swatch300 = document.getElementById(key + "-" + swatcher.weights[6])
-  let swatch200 = document.getElementById(key + "-" + swatcher.weights[7])
-  let swatch100 = document.getElementById(key + "-" + swatcher.weights[8])
-  let swatch075 = document.getElementById(key + "-" + swatcher.weights[9])
-  let swatch050 = document.getElementById(key + "-" + swatcher.weights[10])
-  let swatch025 = document.getElementById(key + "-" + swatcher.weights[11])
+  let swatch900 = document.getElementById(key + "-" + tonal.weights[0])
+  let swatch800 = document.getElementById(key + "-" + tonal.weights[1])
+  let swatch700 = document.getElementById(key + "-" + tonal.weights[2])
+  let swatch600 = document.getElementById(key + "-" + tonal.weights[3])
+  let swatch500 = document.getElementById(key + "-" + tonal.weights[4])
+  let swatch400 = document.getElementById(key + "-" + tonal.weights[5])
+  let swatch300 = document.getElementById(key + "-" + tonal.weights[6])
+  let swatch200 = document.getElementById(key + "-" + tonal.weights[7])
+  let swatch100 = document.getElementById(key + "-" + tonal.weights[8])
+  let swatch075 = document.getElementById(key + "-" + tonal.weights[9])
+  let swatch050 = document.getElementById(key + "-" + tonal.weights[10])
+  let swatch025 = document.getElementById(key + "-" + tonal.weights[11])
 
   swatch900.style.background = swatches.swatch900
   swatch800.style.background = swatches.swatch800
@@ -61,20 +75,20 @@ const renderSwatchRow = (swatches, key) => {
   swatch050.textContent = swatches.swatch050
   swatch025.textContent = swatches.swatch025
 
-  if (swatchLabel == "hex" || swatchLabel === "lightness") {
+  if (swatchLabel == "hex" || swatchLabel === "L") {
 
-    swatch900.style.color = swatcher.isDark(swatches.swatch900) ? "#FFFFFF" : "#000000"
-    swatch800.style.color = swatcher.isDark(swatches.swatch800) ? "#FFFFFF" : "#000000"
-    swatch700.style.color = swatcher.isDark(swatches.swatch700) ? "#FFFFFF" : "#000000"
-    swatch600.style.color = swatcher.isDark(swatches.swatch600) ? "#FFFFFF" : "#000000"
-    swatch500.style.color = swatcher.isDark(swatches.swatch500) ? "#FFFFFF" : "#000000"
-    swatch400.style.color = swatcher.isDark(swatches.swatch400) ? "#FFFFFF" : "#000000"
-    swatch300.style.color = swatcher.isDark(swatches.swatch300) ? "#FFFFFF" : "#000000"
-    swatch200.style.color = swatcher.isDark(swatches.swatch200) ? "#FFFFFF" : "#000000"
-    swatch100.style.color = swatcher.isDark(swatches.swatch100) ? "#FFFFFF" : "#000000"
-    swatch075.style.color = swatcher.isDark(swatches.swatch075) ? "#FFFFFF" : "#000000"
-    swatch050.style.color = swatcher.isDark(swatches.swatch050) ? "#FFFFFF" : "#000000"
-    swatch025.style.color = swatcher.isDark(swatches.swatch025) ? "#FFFFFF" : "#000000"
+    swatch900.style.color = tonal.isDark(swatches.swatch900) ? "#FFFFFF" : "#000000"
+    swatch800.style.color = tonal.isDark(swatches.swatch800) ? "#FFFFFF" : "#000000"
+    swatch700.style.color = tonal.isDark(swatches.swatch700) ? "#FFFFFF" : "#000000"
+    swatch600.style.color = tonal.isDark(swatches.swatch600) ? "#FFFFFF" : "#000000"
+    swatch500.style.color = tonal.isDark(swatches.swatch500) ? "#FFFFFF" : "#000000"
+    swatch400.style.color = tonal.isDark(swatches.swatch400) ? "#FFFFFF" : "#000000"
+    swatch300.style.color = tonal.isDark(swatches.swatch300) ? "#FFFFFF" : "#000000"
+    swatch200.style.color = tonal.isDark(swatches.swatch200) ? "#FFFFFF" : "#000000"
+    swatch100.style.color = tonal.isDark(swatches.swatch100) ? "#FFFFFF" : "#000000"
+    swatch075.style.color = tonal.isDark(swatches.swatch075) ? "#FFFFFF" : "#000000"
+    swatch050.style.color = tonal.isDark(swatches.swatch050) ? "#FFFFFF" : "#000000"
+    swatch025.style.color = tonal.isDark(swatches.swatch025) ? "#FFFFFF" : "#000000"
 
     if (swatchLabel === "hex") {
 
@@ -91,20 +105,20 @@ const renderSwatchRow = (swatches, key) => {
       swatch050.textContent = swatches.swatch050
       swatch025.textContent = swatches.swatch025
 
-    } else if (swatchLabel === "lightness") {
+    } else if (swatchLabel === "L") {
 
-      swatch900.textContent = swatcher.getLightnessValue(swatches.swatch900)
-      swatch800.textContent = swatcher.getLightnessValue(swatches.swatch800)
-      swatch700.textContent = swatcher.getLightnessValue(swatches.swatch700)
-      swatch600.textContent = swatcher.getLightnessValue(swatches.swatch600)
-      swatch500.textContent = swatcher.getLightnessValue(swatches.swatch500)
-      swatch400.textContent = swatcher.getLightnessValue(swatches.swatch400)
-      swatch300.textContent = swatcher.getLightnessValue(swatches.swatch300)
-      swatch200.textContent = swatcher.getLightnessValue(swatches.swatch200)
-      swatch100.textContent = swatcher.getLightnessValue(swatches.swatch100)
-      swatch075.textContent = swatcher.getLightnessValue(swatches.swatch075)
-      swatch050.textContent = swatcher.getLightnessValue(swatches.swatch050)
-      swatch025.textContent = swatcher.getLightnessValue(swatches.swatch025)
+      swatch900.textContent = tonal.getLightnessValue(swatches.swatch900)
+      swatch800.textContent = tonal.getLightnessValue(swatches.swatch800)
+      swatch700.textContent = tonal.getLightnessValue(swatches.swatch700)
+      swatch600.textContent = tonal.getLightnessValue(swatches.swatch600)
+      swatch500.textContent = tonal.getLightnessValue(swatches.swatch500)
+      swatch400.textContent = tonal.getLightnessValue(swatches.swatch400)
+      swatch300.textContent = tonal.getLightnessValue(swatches.swatch300)
+      swatch200.textContent = tonal.getLightnessValue(swatches.swatch200)
+      swatch100.textContent = tonal.getLightnessValue(swatches.swatch100)
+      swatch075.textContent = tonal.getLightnessValue(swatches.swatch075)
+      swatch050.textContent = tonal.getLightnessValue(swatches.swatch050)
+      swatch025.textContent = tonal.getLightnessValue(swatches.swatch025)
 
     }
 
@@ -116,19 +130,17 @@ const renderJSON = (primary, secondary, tertiary, success, warning, danger, neut
 
   let result = []
 
-  result.push(swatchOutput(primary, "primary"))
-  result.push(swatchOutput(secondary, "secondary"))
-  result.push(swatchOutput(tertiary, "tertiary"))
-  result.push(swatchOutput(success, "success"))
-  result.push(swatchOutput(warning, "warning"))
-  result.push(swatchOutput(danger, "danger"))
-  result.push(swatchOutput(neutralCool, "neutral-cool"))
-  result.push(swatchOutput(neutral, "neutral"))
+  result.push(swatchOutput(primary, tonal.bases.primary))
+  result.push(swatchOutput(secondary, tonal.bases.secondary))
+  result.push(swatchOutput(tertiary, tonal.bases.tertiary))
+  result.push(swatchOutput(success, tonal.bases.success))
+  result.push(swatchOutput(warning, tonal.bases.warning))
+  result.push(swatchOutput(danger, tonal.bases.danger))
+  result.push(swatchOutput(neutralCool, tonal.bases.neutralCool))
+  result.push(swatchOutput(neutral, tonal.bases.neutral))
 
   return JSON.stringify(result)
-
 }
-
 
 const swatchOutput = (swatches, name) => {
   return {
@@ -152,7 +164,7 @@ const swatchOutput = (swatches, name) => {
 
 const drawWeightScale = () => {
   const result = []
-  for (const [index, value] of swatcher.weights.entries()) {
+  for (const [index, value] of tonal.weights.entries()) {
     let id = "weight" + value
     result.push(<div className="swatch" id={id}><h4>{value}</h4></div>)
   }
@@ -161,7 +173,7 @@ const drawWeightScale = () => {
 
 const drawSwatchRow = (key) => {
   const result = []
-  for (const [index, value] of swatcher.weights.entries()) {
+  for (const [index, value] of tonal.weights.entries()) {
     let id = key + "-" + value
     result.push( <div className="swatch" id={id}/> ) 
   }
@@ -173,23 +185,23 @@ class App extends React.Component {
 
   componentDidMount() {
 
-    let primarySwatchRow = swatcher.createSwatchRow(primary)
-    let secondarySwatchRow = swatcher.createSwatchRow(secondary)
-    let tertiarySwatchRow = swatcher.createSwatchRow(tertiary)
-    let successSwatchRow = swatcher.createSwatchRow(success)
-    let warningSwatchRow = swatcher.createSwatchRow(warning)
-    let dangerSwatchRow = swatcher.createSwatchRow(danger)
-    let neutralCoolSwatchRow = swatcher.createSwatchRow(neutralCool)
-    let neutralSwatchRow = swatcher.createSwatchRow(neutral)
+    let primarySwatchRow = tonal.createSwatchRow(primary)
+    let secondarySwatchRow = tonal.createSwatchRow(secondary)
+    let tertiarySwatchRow = tonal.createSwatchRow(tertiary)
+    let successSwatchRow = tonal.createSwatchRow(success)
+    let warningSwatchRow = tonal.createSwatchRow(warning)
+    let dangerSwatchRow = tonal.createSwatchRow(danger)
+    let neutralCoolSwatchRow = tonal.createSwatchRow(neutralCool)
+    let neutralSwatchRow = tonal.createSwatchRow(neutral)
 
-    renderSwatchRow(primarySwatchRow, "primary")
-    renderSwatchRow(secondarySwatchRow, "secondary")
-    renderSwatchRow(tertiarySwatchRow, "tertiary")
-    renderSwatchRow(successSwatchRow, "success")
-    renderSwatchRow(warningSwatchRow, "warning")
-    renderSwatchRow(dangerSwatchRow, "danger")
-    renderSwatchRow(neutralCoolSwatchRow, "neutral-cool")
-    renderSwatchRow(neutralSwatchRow, "neutral")
+    renderSwatchRow(primarySwatchRow, tonal.bases.primary)
+    renderSwatchRow(secondarySwatchRow, tonal.bases.secondary)
+    renderSwatchRow(tertiarySwatchRow, tonal.bases.tertiary)
+    renderSwatchRow(successSwatchRow, tonal.bases.success)
+    renderSwatchRow(warningSwatchRow, tonal.bases.warning)
+    renderSwatchRow(dangerSwatchRow, tonal.bases.danger)
+    renderSwatchRow(neutralCoolSwatchRow, tonal.bases.neutralCool)
+    renderSwatchRow(neutralSwatchRow, tonal.bases.neutral)
 
     let output = renderJSON(primarySwatchRow, secondarySwatchRow,
       tertiarySwatchRow, successSwatchRow, warningSwatchRow,
@@ -204,14 +216,14 @@ class App extends React.Component {
 
       <div className="App">
         <div>{drawWeightScale()}</div>
-        <div>{drawSwatchRow("primary")}</div>
-        <div>{drawSwatchRow("secondary")}</div>
-        <div>{drawSwatchRow("tertiary")}</div>
-        <div>{drawSwatchRow("success")}</div>
-        <div>{drawSwatchRow("warning")}</div>
-        <div>{drawSwatchRow("danger")}</div>
-        <div>{drawSwatchRow("neutral-cool")}</div>
-        <div>{drawSwatchRow("neutral")}</div>
+        <div>{drawSwatchRow(tonal.bases.primary)}</div>
+        <div>{drawSwatchRow(tonal.bases.secondary)}</div>
+        <div>{drawSwatchRow(tonal.bases.tertiary)}</div>
+        <div>{drawSwatchRow(tonal.bases.success)}</div>
+        <div>{drawSwatchRow(tonal.bases.warning)}</div>
+        <div>{drawSwatchRow(tonal.bases.danger)}</div>
+        <div>{drawSwatchRow(tonal.bases.neutralCool)}</div>
+        <div>{drawSwatchRow(tonal.bases.neutral)}</div>
       </div>
     );
   }

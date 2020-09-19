@@ -1,8 +1,9 @@
 import tinycolor from 'tinycolor2'
 import convert from 'color-convert'
 
-class Swatcher {
+class Tonal {
 
+    bases = {primary: "primary", secondary: "secondary", tertiary: "tertiary", success: "success", warning: "warning", danger: "danger", neutralCool: "neutral-cool",neutral: "neutral"}
     weights = ['900', '800', '700', '600', '500', '400', '300', '200', '100', '075', '050', '025'];
 
     constructor(paperWhite, shadeTargetMultiplier) {
@@ -28,13 +29,6 @@ class Swatcher {
         let swatch075 = this.lightenToTarget(color.clone().saturate(6), tintTargets.L_075)
         let swatch050 = this.lightenToTarget(color.clone().saturate(8), tintTargets.L_050)
         let swatch025 = this.lightenToTarget(color.clone().saturate(25), tintTargets.L_025)
-
-        // let swatch300 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_300)
-        // let swatch200 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_200)
-        // let swatch100 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_100)
-        // let swatch075 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_075)
-        // let swatch050 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_050)
-        // let swatch025 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_025)
 
         return {
             swatch900: swatch900.toHexString(),
@@ -133,4 +127,4 @@ class Swatcher {
 
 }
 
-export default Swatcher;
+export default Tonal;

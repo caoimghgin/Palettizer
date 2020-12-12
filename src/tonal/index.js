@@ -30,6 +30,13 @@ class Tonal {
         let swatch050 = this.lightenToTarget(color.clone().saturate(8), tintTargets.L_050)
         let swatch025 = this.lightenToTarget(color.clone().saturate(25), tintTargets.L_025)
 
+        // let swatch300 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_300)
+        // let swatch200 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_200)
+        // let swatch100 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_100)
+        // let swatch075 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_075)
+        // let swatch050 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_050)
+        // let swatch025 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_025)
+
         return {
             swatch900: swatch900.toHexString(),
             swatch800: swatch800.toHexString(),

@@ -2,24 +2,24 @@ import React from 'react';
 import './App.css';
 import Tonal from './tonal'
 import { shadowTarget, highlightTarget, swatchLabelType } from './constants'
-// import {primary, secondary, tertiary, success, warning, danger, neutralCool, neutral} from './base_colors/bootstrap'
+import {primary, secondary, tertiary, success, warning, danger, neutralCool, neutral} from './base_colors/indeed'
 
 //
 // Enter your colors below, or comment out and experiment with the import above.
 // The values below from my design system Meda, only as a starting point
 //
 
- var primary = "#0073E6"
- var secondary = "#7C66CC"
- var tertiary = "#FF6900"
- var success = "#198A61"
- var warning = "#ffa500"
- var danger = "#DA3E41"
- var neutralCool = "#717684"
- var neutral = "#787878"
+//  var primary = "#0073E6"
+//  var secondary = "#7C66CC"
+//  var tertiary = "#FF6900"
+//  var success = "#198A61"
+//  var warning = "#ffa500"
+//  var danger = "#DA3E41"
+//  var neutralCool = "#717684"
+//  var neutral = "#787878"
 
-let tonal = new Tonal(highlightTarget.light, shadowTarget.medium)
-const swatchLabel = swatchLabelType.lValue
+let tonal = new Tonal(highlightTarget.light, shadowTarget.light)
+const swatchLabel = swatchLabelType.lValue;
 
 const renderSwatchRow = (swatches, key) => {
 

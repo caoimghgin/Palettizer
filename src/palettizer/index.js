@@ -1,10 +1,10 @@
 import tinycolor from 'tinycolor2'
 import convert from 'color-convert'
 
-class Tonal {
+class Palettizer {
 
     bases = {primary: "primary", secondary: "secondary", tertiary: "tertiary", success: "success", warning: "warning", danger: "danger", neutralCool: "neutral-cool",neutral: "neutral"}
-    weights = ['900', '800', '700', '600', '500', '400', '300', '200', '100', '075', '050', '025'];
+    weights = ['900', '800', '700', '600', '500', '400', '300', '200', '100', '075', '050', '025', '015'];
 
     constructor(paperWhite, shadeTargetMultiplier) {
         this.paperWhite = paperWhite
@@ -24,18 +24,12 @@ class Tonal {
         let swatch500 = this.darkenToTarget(color.clone().saturate(0), shadeTargets.L_500)
         let swatch400 = color
         let swatch300 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_300)
-        let swatch200 = this.lightenToTarget(color.clone().saturate(3), tintTargets.L_200)
-        let swatch100 = this.lightenToTarget(color.clone().saturate(5), tintTargets.L_100)
-        let swatch075 = this.lightenToTarget(color.clone().saturate(6), tintTargets.L_075)
-        let swatch050 = this.lightenToTarget(color.clone().saturate(8), tintTargets.L_050)
-        let swatch025 = this.lightenToTarget(color.clone().saturate(25), tintTargets.L_025)
-
-        // let swatch300 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_300)
-        // let swatch200 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_200)
-        // let swatch100 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_100)
-        // let swatch075 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_075)
-        // let swatch050 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_050)
-        // let swatch025 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_025)
+        let swatch200 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_200)
+        let swatch100 = this.lightenToTarget(color.clone().saturate(0), tintTargets.L_100)
+        let swatch075 = this.lightenToTarget(color.clone().saturate(3), tintTargets.L_075)
+        let swatch050 = this.lightenToTarget(color.clone().saturate(5), tintTargets.L_050)
+        let swatch025 = this.lightenToTarget(color.clone().saturate(10), tintTargets.L_025)
+        let swatch015 = this.lightenToTarget(color.clone().saturate(15), tintTargets.L_015)
 
         return {
             swatch900: swatch900.toHexString(),
@@ -49,7 +43,8 @@ class Tonal {
             swatch100: swatch100.toHexString(),
             swatch075: swatch075.toHexString(),
             swatch050: swatch050.toHexString(),
-            swatch025: swatch025.toHexString()
+            swatch025: swatch025.toHexString(),
+            swatch015: swatch015.toHexString()
         }
 
     }
@@ -118,13 +113,24 @@ class Tonal {
         let L_075 = L_400 + (stepValue * 4)
         let L_050 = L_400 + (stepValue * 5)
 
+        // Want a tint between 050 and 015
+        let L_025 = ((L_050 - this.paperWhite) / 2) + this.paperWhite
+        // if *L value not equal to paperWhite, make slightly lighter
+        if ( (L_025) + 2 >= this.paperWhite) {
+            L_025 = L_025;
+        } else {
+            L_025 = L_025 + 1;
+
+        }
+
         return {
             L_300: L_300,
             L_200: L_200,
             L_100: L_100,
             L_075: L_075,
             L_050: L_050,
-            L_025: this.paperWhite,
+            L_025: L_025,
+            L_015: this.paperWhite,
         }
     }
 
@@ -134,4 +140,4 @@ class Tonal {
 
 }
 
-export default Tonal;
+export default Palettizer;

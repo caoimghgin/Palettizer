@@ -1,0 +1,13 @@
+// export var primary = "#0f62fe"
+// export var primary = "CC0000" // CVS
+// export var primary ="#7E3A99" //AETNA
+//export var primary = "#0085de" // BLUE CROSS CALI
+export var primary = "#72D5FF" // Wireframe
+export var secondary = "#ffbae2"
+export var tertiary = "#fff382"
+export var info = "#116EDF"
+export var warning = "#FFC107"
+export var success = "#118437"
+export var danger = "#D53220"
+export var neutralCool = "#697077"
+export var neutral = "#68665E"

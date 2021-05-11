@@ -1,6 +1,8 @@
 export var primary = "#0052CC"
 export var secondary = "#172B4D"
 export var tertiary = "#6554C0"
+export var info = "#116EDF"
+
 export var success = "#36B37E"
 export var warning = "#FF991F"
 export var danger = "#DE350B"

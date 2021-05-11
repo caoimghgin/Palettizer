@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import Palettizer from './palettizer'
 import { shadowTarget, highlightTarget, swatchLabelType } from './constants'
-import {primary, secondary, tertiary, success, warning, danger, neutralCool, neutral} from './base_colors/indeed'
+import { primary, secondary, tertiary, success, info, warning, danger, neutralCool, neutral } from './base_colors/heart'
 
-let palettizer = new Palettizer(highlightTarget.light, shadowTarget.light)
+let palettizer = new Palettizer(highlightTarget.light, shadowTarget.dark)
 const swatchLabel = swatchLabelType.lValue;
 
 const renderSwatchRow = (swatches, key) => {
@@ -119,7 +119,7 @@ const renderSwatchRow = (swatches, key) => {
 
 }
 
-const renderJSON = (primary, secondary, tertiary, success, warning, danger, neutralCool, neutral) => {
+const renderJSON = (primary, secondary, tertiary, success, info, warning, danger, neutralCool, neutral) => {
 
   let result = []
 
@@ -127,6 +127,7 @@ const renderJSON = (primary, secondary, tertiary, success, warning, danger, neut
   result.push(swatchOutput(secondary, palettizer.bases.secondary))
   result.push(swatchOutput(tertiary, palettizer.bases.tertiary))
   result.push(swatchOutput(success, palettizer.bases.success))
+  result.push(swatchOutput(info, palettizer.bases.info))
   result.push(swatchOutput(warning, palettizer.bases.warning))
   result.push(swatchOutput(danger, palettizer.bases.danger))
   result.push(swatchOutput(neutralCool, palettizer.bases.neutralCool))
@@ -183,6 +184,7 @@ class App extends React.Component {
     let secondarySwatchRow = palettizer.createSwatchRow(secondary)
     let tertiarySwatchRow = palettizer.createSwatchRow(tertiary)
     let successSwatchRow = palettizer.createSwatchRow(success)
+    let infoSwatchRow = palettizer.createSwatchRow(info)
     let warningSwatchRow = palettizer.createSwatchRow(warning)
     let dangerSwatchRow = palettizer.createSwatchRow(danger)
     let neutralCoolSwatchRow = palettizer.createSwatchRow(neutralCool)
@@ -192,13 +194,14 @@ class App extends React.Component {
     renderSwatchRow(secondarySwatchRow, palettizer.bases.secondary)
     renderSwatchRow(tertiarySwatchRow, palettizer.bases.tertiary)
     renderSwatchRow(successSwatchRow, palettizer.bases.success)
+    renderSwatchRow(infoSwatchRow, palettizer.bases.info)
     renderSwatchRow(warningSwatchRow, palettizer.bases.warning)
     renderSwatchRow(dangerSwatchRow, palettizer.bases.danger)
     renderSwatchRow(neutralCoolSwatchRow, palettizer.bases.neutralCool)
     renderSwatchRow(neutralSwatchRow, palettizer.bases.neutral)
 
     let output = renderJSON(primarySwatchRow, secondarySwatchRow,
-      tertiarySwatchRow, successSwatchRow, warningSwatchRow,
+      tertiarySwatchRow,  successSwatchRow, infoSwatchRow, warningSwatchRow,
       dangerSwatchRow, neutralCoolSwatchRow, neutralSwatchRow)
 
     console.log(output)
@@ -214,6 +217,7 @@ class App extends React.Component {
         <div>{drawSwatchRow(palettizer.bases.secondary)}</div>
         <div>{drawSwatchRow(palettizer.bases.tertiary)}</div>
         <div>{drawSwatchRow(palettizer.bases.success)}</div>
+        <div>{drawSwatchRow(palettizer.bases.info)}</div>
         <div>{drawSwatchRow(palettizer.bases.warning)}</div>
         <div>{drawSwatchRow(palettizer.bases.danger)}</div>
         <div>{drawSwatchRow(palettizer.bases.neutralCool)}</div>

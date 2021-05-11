@@ -4,5 +4,7 @@ export var tertiary = "#47C1BF"
 export var success = "#50B83C"
 export var warning = "#EEC200"
 export var danger = "#DE3618"
+export var info = "#116EDF"
+
 export var neutralCool = "#637381"
 export var neutral = "#637381"

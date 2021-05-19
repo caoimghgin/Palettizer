@@ -200,199 +200,19 @@ const styleDictionaryOutput = (data) => {
   }
 
   var jsonColors = JSON.parse(data);
-  // var primary = jsonColors.filter(function(item) { return item.name === 'primary'; })[0];
-  // var secondary = jsonColors.filter(function(item) { return item.name === 'secondary'; })[0];
-  // var tertiary = jsonColors.filter(function(item) { return item.name === 'tertiary'; })[0];
-  // var success = jsonColors.filter(function(item) { return item.name === 'success'; })[0];
-  // var info = jsonColors.filter(function(item) { return item.name === 'info'; })[0];
-  // var warning = jsonColors.filter(function(item) { return item.name === 'warning'; })[0];
-  // var danger = jsonColors.filter(function(item) { return item.name === 'danger'; })[0];
-  // var neutralCool = jsonColors.filter(function(item) { return item.name === 'neutral-cool'; })[0];
-  // var neutral = jsonColors.filter(function(item) { return item.name === 'neutral'; })[0];
-
 
 for (const [key, value] of Object.entries(semantic)) {
-  // console.log(key, value);
 
   let colors = jsonColors.filter(function(item) { return item.name === value; })[0];
 
   for (let index in weight) {
-    // console.log(weight[index])
 
     result.json.color[value][value +'-'+ weight[index]] = {type: "color", value: colors.swatches[Number(weight[index])], category: "fill"}
 
   }
 }
 
-/*
-  /// PRIMARY 
-
-  result.json.color['primary']['primary-900'] = {type: "color", value: primary.swatches['900'], category: "fill"}
-  result.json.color['primary']['primary-800'] = {type: "color", value: primary.swatches['800'], category: "fill"}
-  result.json.color['primary']['primary-700'] = {type: "color", value: primary.swatches['700'], category: "fill"}
-  result.json.color['primary']['primary-600'] = {type: "color", value: primary.swatches['600'], category: "fill"}
-  result.json.color['primary']['primary-500'] = {type: "color", value: primary.swatches['500'], category: "fill"}
-
-  result.json.color['primary']['primary-400'] = {type: "color", value: primary.swatches['400'], category: "fill"}
-  result.json.color['primary']['primary-300'] = {type: "color", value: primary.swatches['300'], category: "fill"}
-  result.json.color['primary']['primary-200'] = {type: "color", value: primary.swatches['200'], category: "fill"}
-  result.json.color['primary']['primary-100'] = {type: "color", value: primary.swatches['100'], category: "fill"}
-  result.json.color['primary']['primary-075'] = {type: "color", value: primary.swatches['75'], category: "fill"}
-
-  result.json.color['primary']['primary-050'] = {type: "color", value: primary.swatches['50'], category: "fill"}
-  result.json.color['primary']['primary-025'] = {type: "color", value: primary.swatches['25'], category: "fill"}
-  result.json.color['primary']['primary-015'] = {type: "color", value: primary.swatches['15'], category: "fill"}
-
-
-  /// SECONDARY
-
-  result.json.color['secondary']['secondary-900'] = {type: "color", value: secondary.swatches['900'], category: "fill"}
-  result.json.color['secondary']['secondary-800'] = {type: "color", value: secondary.swatches['800'], category: "fill"}
-  result.json.color['secondary']['secondary-700'] = {type: "color", value: secondary.swatches['700'], category: "fill"}
-  result.json.color['secondary']['secondary-600'] = {type: "color", value: secondary.swatches['600'], category: "fill"}
-  result.json.color['secondary']['secondary-500'] = {type: "color", value: secondary.swatches['500'], category: "fill"}
-
-  result.json.color['secondary']['secondary-400'] = {type: "color", value: secondary.swatches['400'], category: "fill"}
-  result.json.color['secondary']['secondary-300'] = {type: "color", value: secondary.swatches['300'], category: "fill"}
-  result.json.color['secondary']['secondary-200'] = {type: "color", value: secondary.swatches['200'], category: "fill"}
-  result.json.color['secondary']['secondary-100'] = {type: "color", value: secondary.swatches['100'], category: "fill"}
-  result.json.color['secondary']['secondary-075'] = {type: "color", value: secondary.swatches['75'], category: "fill"}
-
-  result.json.color['secondary']['secondary-050'] = {type: "color", value: secondary.swatches['50'], category: "fill"}
-  result.json.color['secondary']['secondary-025'] = {type: "color", value: secondary.swatches['25'], category: "fill"}
-  result.json.color['secondary']['secondary-015'] = {type: "color", value: secondary.swatches['15'], category: "fill"}
-
-  /// tertiary
-
-  result.json.color['tertiary']['tertiary-900'] = {type: "color", value: tertiary.swatches['900'], category: "fill"}
-  result.json.color['tertiary']['tertiary-800'] = {type: "color", value: tertiary.swatches['800'], category: "fill"}
-  result.json.color['tertiary']['tertiary-700'] = {type: "color", value: tertiary.swatches['700'], category: "fill"}
-  result.json.color['tertiary']['tertiary-600'] = {type: "color", value: tertiary.swatches['600'], category: "fill"}
-  result.json.color['tertiary']['tertiary-500'] = {type: "color", value: tertiary.swatches['500'], category: "fill"}
-
-  result.json.color['tertiary']['tertiary-400'] = {type: "color", value: tertiary.swatches['400'], category: "fill"}
-  result.json.color['tertiary']['tertiary-300'] = {type: "color", value: tertiary.swatches['300'], category: "fill"}
-  result.json.color['tertiary']['tertiary-200'] = {type: "color", value: tertiary.swatches['200'], category: "fill"}
-  result.json.color['tertiary']['tertiary-100'] = {type: "color", value: tertiary.swatches['100'], category: "fill"}
-  result.json.color['tertiary']['tertiary-075'] = {type: "color", value: tertiary.swatches['75'], category: "fill"}
-
-  result.json.color['tertiary']['tertiary-050'] = {type: "color", value: tertiary.swatches['50'], category: "fill"}
-  result.json.color['tertiary']['tertiary-025'] = {type: "color", value: tertiary.swatches['25'], category: "fill"}
-  result.json.color['tertiary']['tertiary-015'] = {type: "color", value: tertiary.swatches['15'], category: "fill"}
-
-  /// SUCCESS
-
-  result.json.color['success']['success-900'] = {type: "color", value: success.swatches['900'], category: "fill"}
-  result.json.color['success']['success-800'] = {type: "color", value: success.swatches['800'], category: "fill"}
-  result.json.color['success']['success-700'] = {type: "color", value: success.swatches['700'], category: "fill"}
-  result.json.color['success']['success-600'] = {type: "color", value: success.swatches['600'], category: "fill"}
-  result.json.color['success']['success-500'] = {type: "color", value: success.swatches['500'], category: "fill"}
-
-  result.json.color['success']['success-400'] = {type: "color", value: success.swatches['400'], category: "fill"}
-  result.json.color['success']['success-300'] = {type: "color", value: success.swatches['300'], category: "fill"}
-  result.json.color['success']['success-200'] = {type: "color", value: success.swatches['200'], category: "fill"}
-  result.json.color['success']['success-100'] = {type: "color", value: success.swatches['100'], category: "fill"}
-  result.json.color['success']['success-075'] = {type: "color", value: success.swatches['75'], category: "fill"}
-
-  result.json.color['success']['success-050'] = {type: "color", value: success.swatches['50'], category: "fill"}
-  result.json.color['success']['success-025'] = {type: "color", value: success.swatches['25'], category: "fill"}
-  result.json.color['success']['success-015'] = {type: "color", value: success.swatches['15'], category: "fill"}
-
-/// INFO
-
-  result.json.color['info']['info-900'] = {type: "color", value: info.swatches['900'], category: "fill"}
-  result.json.color['info']['info-800'] = {type: "color", value: info.swatches['800'], category: "fill"}
-  result.json.color['info']['info-700'] = {type: "color", value: info.swatches['700'], category: "fill"}
-  result.json.color['info']['info-600'] = {type: "color", value: info.swatches['600'], category: "fill"}
-  result.json.color['info']['info-500'] = {type: "color", value: info.swatches['500'], category: "fill"}
-
-  result.json.color['info']['info-400'] = {type: "color", value: info.swatches['400'], category: "fill"}
-  result.json.color['info']['info-300'] = {type: "color", value: info.swatches['300'], category: "fill"}
-  result.json.color['info']['info-200'] = {type: "color", value: info.swatches['200'], category: "fill"}
-  result.json.color['info']['info-100'] = {type: "color", value: info.swatches['100'], category: "fill"}
-  result.json.color['info']['info-075'] = {type: "color", value: info.swatches['75'], category: "fill"}
-
-  result.json.color['info']['info-050'] = {type: "color", value: info.swatches['50'], category: "fill"}
-  result.json.color['info']['info-025'] = {type: "color", value: info.swatches['25'], category: "fill"}
-  result.json.color['info']['info-015'] = {type: "color", value: info.swatches['15'], category: "fill"}
-
-// WARNING
-
-  result.json.color['warning']['warning-900'] = {type: "color", value: warning.swatches['900'], category: "fill"}
-  result.json.color['warning']['warning-800'] = {type: "color", value: warning.swatches['800'], category: "fill"}
-  result.json.color['warning']['warning-700'] = {type: "color", value: warning.swatches['700'], category: "fill"}
-  result.json.color['warning']['warning-600'] = {type: "color", value: warning.swatches['600'], category: "fill"}
-  result.json.color['warning']['warning-500'] = {type: "color", value: warning.swatches['500'], category: "fill"}
-
-  result.json.color['warning']['warning-400'] = {type: "color", value: warning.swatches['400'], category: "fill"}
-  result.json.color['warning']['warning-300'] = {type: "color", value: warning.swatches['300'], category: "fill"}
-  result.json.color['warning']['warning-200'] = {type: "color", value: warning.swatches['200'], category: "fill"}
-  result.json.color['warning']['warning-100'] = {type: "color", value: warning.swatches['100'], category: "fill"}
-  result.json.color['warning']['warning-075'] = {type: "color", value: warning.swatches['75'], category: "fill"}
-
-  result.json.color['warning']['warning-050'] = {type: "color", value: warning.swatches['50'], category: "fill"}
-  result.json.color['warning']['warning-025'] = {type: "color", value: warning.swatches['25'], category: "fill"}
-  result.json.color['warning']['warning-015'] = {type: "color", value: warning.swatches['15'], category: "fill"}
-
-  // DANGER
-
-  result.json.color['danger']['danger-900'] = {type: "color", value: danger.swatches['900'], category: "fill"}
-  result.json.color['danger']['danger-800'] = {type: "color", value: danger.swatches['800'], category: "fill"}
-  result.json.color['danger']['danger-700'] = {type: "color", value: danger.swatches['700'], category: "fill"}
-  result.json.color['danger']['danger-600'] = {type: "color", value: danger.swatches['600'], category: "fill"}
-  result.json.color['danger']['danger-500'] = {type: "color", value: danger.swatches['500'], category: "fill"}
-
-  result.json.color['danger']['danger-400'] = {type: "color", value: danger.swatches['400'], category: "fill"}
-  result.json.color['danger']['danger-300'] = {type: "color", value: danger.swatches['300'], category: "fill"}
-  result.json.color['danger']['danger-200'] = {type: "color", value: danger.swatches['200'], category: "fill"}
-  result.json.color['danger']['danger-100'] = {type: "color", value: danger.swatches['100'], category: "fill"}
-  result.json.color['danger']['danger-075'] = {type: "color", value: danger.swatches['75'], category: "fill"}
-
-  result.json.color['danger']['danger-050'] = {type: "color", value: danger.swatches['50'], category: "fill"}
-  result.json.color['danger']['danger-025'] = {type: "color", value: danger.swatches['25'], category: "fill"}
-  result.json.color['danger']['danger-015'] = {type: "color", value: danger.swatches['15'], category: "fill"}
-
-
-// NEUTRAL-COOL
-
-    result.json.color['neutral-cool']['neutral-cool-900'] = {type: "color", value: neutralCool.swatches['900'], category: "fill"}
-    result.json.color['neutral-cool']['neutral-cool-800'] = {type: "color", value: neutralCool.swatches['800'], category: "fill"}
-    result.json.color['neutral-cool']['neutral-cool-700'] = {type: "color", value: neutralCool.swatches['700'], category: "fill"}
-    result.json.color['neutral-cool']['neutral-cool-600'] = {type: "color", value: neutralCool.swatches['600'], category: "fill"}
-    result.json.color['neutral-cool']['neutral-cool-500'] = {type: "color", value: neutralCool.swatches['500'], category: "fill"}
-  
-    result.json.color['neutral-cool']['neutral-cool-400'] = {type: "color", value: neutralCool.swatches['400'], category: "fill"}
-    result.json.color['neutral-cool']['neutral-cool-300'] = {type: "color", value: neutralCool.swatches['300'], category: "fill"}
-    result.json.color['neutral-cool']['neutral-cool-200'] = {type: "color", value: neutralCool.swatches['200'], category: "fill"}
-    result.json.color['neutral-cool']['neutral-cool-100'] = {type: "color", value: neutralCool.swatches['100'], category: "fill"}
-    result.json.color['neutral-cool']['neutral-cool-075'] = {type: "color", value: neutralCool.swatches['75'], category: "fill"}
-  
-    result.json.color['neutral-cool']['neutral-cool-050'] = {type: "color", value: neutralCool.swatches['50'], category: "fill"}
-    result.json.color['neutral-cool']['neutral-cool-025'] = {type: "color", value: neutralCool.swatches['25'], category: "fill"}
-    result.json.color['neutral-cool']['neutral-cool-015'] = {type: "color", value: neutralCool.swatches['15'], category: "fill"}
-
-
-// NEUTRAL
-
-    result.json.color['neutral']['neutral-900'] = {type: "color", value: neutral.swatches['900'], category: "fill"}
-    result.json.color['neutral']['neutral-800'] = {type: "color", value: neutral.swatches['800'], category: "fill"}
-    result.json.color['neutral']['neutral-700'] = {type: "color", value: neutral.swatches['700'], category: "fill"}
-    result.json.color['neutral']['neutral-600'] = {type: "color", value: neutral.swatches['600'], category: "fill"}
-    result.json.color['neutral']['neutral-500'] = {type: "color", value: neutral.swatches['500'], category: "fill"}
-  
-    result.json.color['neutral']['neutral-400'] = {type: "color", value: neutral.swatches['400'], category: "fill"}
-    result.json.color['neutral']['neutral-300'] = {type: "color", value: neutral.swatches['300'], category: "fill"}
-    result.json.color['neutral']['neutral-200'] = {type: "color", value: neutral.swatches['200'], category: "fill"}
-    result.json.color['neutral']['neutral-100'] = {type: "color", value: neutral.swatches['100'], category: "fill"}
-    result.json.color['neutral']['neutral-075'] = {type: "color", value: neutral.swatches['75'], category: "fill"}
-  
-    result.json.color['neutral']['neutral-050'] = {type: "color", value: neutral.swatches['50'], category: "fill"}
-    result.json.color['neutral']['neutral-025'] = {type: "color", value: neutral.swatches['25'], category: "fill"}
-    result.json.color['neutral']['neutral-015'] = {type: "color", value: neutral.swatches['15'], category: "fill"}    
-*/
-
   console.log(JSON.stringify(result))
-  // console.log(data)
 
 }
 

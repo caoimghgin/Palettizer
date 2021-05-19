@@ -3,9 +3,6 @@ import convert from 'color-convert'
 
 class Palettizer {
 
-    bases = {primary: "primary", secondary: "secondary", tertiary: "tertiary", success: "success", info: "info", warning: "warning", danger: "danger", neutralCool: "neutral-cool", neutral: "neutral"}
-    weights = ['900', '800', '700', '600', '500', '400', '300', '200', '100', '075', '050', '025', '015'];
-
     constructor(paperWhite, shadeTargetMultiplier) {
         this.paperWhite = paperWhite
         this.shadeTargetMultiplier = shadeTargetMultiplier
@@ -102,10 +99,70 @@ class Palettizer {
         }
     }
 
-    createTintTargets(base) {
+///
+/// If base color l-value = 65 or greater, old way.
+/// Else, do new way.
+///
+
+createTintTargets(base) {
+    let L_400 = this.getLightnessValue(base)
+
+    if (L_400 > 60) {
+
+        return this.createTintTargetsSansWCAG(base) 
+
+    } else {
+
+        return this.createTintTargetsWCAG(base)
+    }
+
+}
+
+
+createTintTargetsWCAG(base) {
+    let L_400 = this.getLightnessValue(base)
+
+
+    let stepValue = (this.paperWhite - L_400) / 6
+    let ThreeToOneRatio = (this.paperWhite - L_400) / 6
+
+    let foobar = (68 - L_400) / 3
+
+    let L_300 = L_400 + (foobar * 1)
+    let L_200 = L_400 + (foobar * 2)
+    let L_100 = L_400 + (foobar * 3)
+    let L_075 = L_400 + (stepValue * 4)
+    let L_050 = L_400 + (stepValue * 5)
+
+    // Want a tint between 050 and 015
+    let L_025 = ((L_050 - this.paperWhite) / 2) + this.paperWhite
+    // if *L value not equal to paperWhite, make slightly lighter
+    if ( (L_025) + 2 >= this.paperWhite) {
+        L_025 = L_025;
+    } else {
+        L_025 = L_025 + 1;
+
+    }
+
+    let result =  {
+        L_300: L_300,
+        L_200: L_200,
+        L_100: L_100,
+        L_075: L_075,
+        L_050: L_050,
+        L_025: L_025,
+        L_015: this.paperWhite,
+    }
+
+    return result
+}
+
+    createTintTargetsSansWCAG(base) {
         let L_400 = this.getLightnessValue(base)
 
+
         let stepValue = (this.paperWhite - L_400) / 6
+        let ThreeToOneRatio = (this.paperWhite - L_400) / 6
 
         let L_300 = L_400 + (stepValue * 1)
         let L_200 = L_400 + (stepValue * 2)
@@ -123,7 +180,7 @@ class Palettizer {
 
         }
 
-        return {
+        let result =  {
             L_300: L_300,
             L_200: L_200,
             L_100: L_100,
@@ -132,10 +189,17 @@ class Palettizer {
             L_025: L_025,
             L_015: this.paperWhite,
         }
+
+        return result
     }
 
     isDark(hexString) {
         return tinycolor(hexString).isDark()
+    }
+
+    doThings( base ) {
+        let L_400 = this.getLightnessValue(base)
+        console.log(base)
     }
 
 }
